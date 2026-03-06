@@ -1,13 +1,22 @@
 package org.example.springboothomework.model;
 
+import jakarta.validation.constraints.*;
+
 public class Course {
     private static int counter = 1;
 
-    private String courseId;
+    @NotBlank(message = "Course name cannot be empty")
+    @Size(min = 3, max = 100, message = "Course name must be between 3 and 100 characters")
     private String name;
+
+    @Min(value = 0, message = "Price cannot be negative")
     private double price;
+
+    @Min(value = 0, message = "Money earned cannot be negative")
     private double money_earned;
-    private Teacher teacher; // nullable
+
+    @NotNull(message = "Teacher must be provided if assigning")
+    private Teacher teacher;
 
     public Course(String name, double price) {
         this.courseId = String.valueOf(counter++);
