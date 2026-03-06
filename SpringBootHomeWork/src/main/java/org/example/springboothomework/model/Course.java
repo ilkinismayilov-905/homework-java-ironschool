@@ -4,6 +4,7 @@ import jakarta.validation.constraints.*;
 
 public class Course {
     private static int counter = 1;
+    private String courseId;
 
     @NotBlank(message = "Course name cannot be empty")
     @Size(min = 3, max = 100, message = "Course name must be between 3 and 100 characters")
