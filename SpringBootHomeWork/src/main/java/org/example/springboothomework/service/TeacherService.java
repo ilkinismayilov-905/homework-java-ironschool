@@ -4,9 +4,7 @@ import org.example.springboothomework.exceptions.NotFoundException;
 import org.example.springboothomework.model.Teacher;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class TeacherService {
@@ -18,8 +16,8 @@ public class TeacherService {
         return teacher;
     }
 
-    public Collection<Teacher> getAllTeachers() {
-        return teachers.values();
+    public List<Teacher> getAllTeachers() {
+        return new ArrayList<>(teachers.values());
     }
 
     public Teacher getTeacherById(String teacherId) {
@@ -31,6 +29,9 @@ public class TeacherService {
     }
 
     public Teacher updateTeacher(String teacherId, Teacher updatedTeacher) {
+        if (!teachers.containsKey(teacherId)) {
+            throw new NotFoundException("Teacher not found");
+        }
         Teacher teacher = getTeacherById(teacherId);
         teacher.setName(updatedTeacher.getName());
         teacher.setSalary(updatedTeacher.getSalary());
