@@ -98,6 +98,14 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
+    <configuration name="SpringBootHomeWorkApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="SpringBootHomeWork" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.springboothomework.SpringBootHomeWorkApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

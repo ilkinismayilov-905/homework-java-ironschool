@@ -19,6 +19,10 @@ public class Course {
     @NotNull(message = "Teacher must be provided if assigning")
     private Teacher teacher;
 
+    @NotNull(message = "Student must be provided if assigning")
+    private Student student;
+
+
     public Course(String name, double price) {
         this.courseId = String.valueOf(counter++);
         this.name = name;
@@ -67,4 +71,13 @@ public class Course {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
 }
