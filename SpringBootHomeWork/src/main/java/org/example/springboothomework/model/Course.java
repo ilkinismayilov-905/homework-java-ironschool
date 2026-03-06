@@ -1,6 +1,7 @@
 package org.example.springboothomework.model;
 
 public class Course {
+    private static int counter = 1;
 
     private String courseId;
     private String name;
@@ -8,8 +9,8 @@ public class Course {
     private double money_earned;
     private Teacher teacher; // nullable
 
-
     public Course(String name, double price) {
+        this.courseId = String.valueOf(counter++);
         this.name = name;
         this.price = price;
     }
