@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="08b40c12-a024-4a58-90fe-dcb475688ba0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SpringBootHomeWork/src/main/java/org/example/springboothomework/controller/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpringBootHomeWork/src/test/java/org/example/springboothomework/StudentControllerTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.SchoolControllerTest.shouldReturnProfit.executor": "Run",
+    "JUnit.StudentControllerTest.executor": "Run",
+    "JUnit.StudentControllerTest.shouldReturnAllStudents.executor": "Run",
+    "git-widget-placeholder": "TaskMain",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.StudentControllerTest.shouldReturnAllStudents">
+    <configuration name="StudentControllerTest.shouldCreateStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpringBootHomeWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.springboothomework.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.springboothomework" />
+      <option name="MAIN_CLASS_NAME" value="org.example.springboothomework.StudentControllerTest" />
+      <option name="METHOD_NAME" value="shouldCreateStudent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentControllerTest.shouldReturnAllStudents" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpringBootHomeWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.springboothomework.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.springboothomework" />
+      <option name="MAIN_CLASS_NAME" value="org.example.springboothomework.StudentControllerTest" />
+      <option name="METHOD_NAME" value="shouldReturnAllStudents" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentControllerTest.shouldReturnStudentById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpringBootHomeWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.springboothomework.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.springboothomework" />
+      <option name="MAIN_CLASS_NAME" value="org.example.springboothomework.StudentControllerTest" />
+      <option name="METHOD_NAME" value="shouldReturnStudentById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentControllerTest.shouldReturnStudentsByCourseId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpringBootHomeWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.springboothomework.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.springboothomework" />
+      <option name="MAIN_CLASS_NAME" value="org.example.springboothomework.StudentControllerTest" />
+      <option name="METHOD_NAME" value="shouldReturnStudentsByCourseId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentControllerTest.shouldUpdateStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SpringBootHomeWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.springboothomework.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.springboothomework" />
+      <option name="MAIN_CLASS_NAME" value="org.example.springboothomework.StudentControllerTest" />
+      <option name="METHOD_NAME" value="shouldUpdateStudent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.StudentControllerTest.shouldReturnAllStudents" />
+        <item itemvalue="JUnit.StudentControllerTest.shouldReturnStudentsByCourseId" />
+        <item itemvalue="JUnit.StudentControllerTest.shouldUpdateStudent" />
+        <item itemvalue="JUnit.StudentControllerTest.shouldCreateStudent" />
+        <item itemvalue="JUnit.StudentControllerTest.shouldReturnStudentById" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+</project>
