@@ -13,12 +13,15 @@ public class Teacher {
     private String name;
 
     @Positive(message = "Salary must be greater than 0")
-    private double salary;
+    private Double salary;
 
     public Teacher(String name, double salary) {
         this.teacherId = String.valueOf(counter++);
         this.name = name;
         this.salary = salary;
+    }
+
+    public Teacher() {
     }
 
     public String getTeacherId() {
@@ -29,7 +32,7 @@ public class Teacher {
         return name;
     }
 
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
@@ -37,7 +40,7 @@ public class Teacher {
         this.name = name;
     }
 
-    public void setSalary(@Positive(message = "Salary must be greater than 0") double salary) {
+    public void setSalary(@Positive(message = "Salary must be greater than 0") Double salary) {
         this.salary = salary;
     }
 }

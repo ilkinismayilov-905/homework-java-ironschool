@@ -11,16 +11,16 @@ public class Course {
     private String name;
 
     @Min(value = 0, message = "Price cannot be negative")
-    private double price;
+    private Double price;
 
     @Min(value = 0, message = "Money earned cannot be negative")
-    private double money_earned;
+    private Double money_earned;
 
-    @NotNull(message = "Teacher must be provided if assigning")
-    private Teacher teacher;
+//    @NotNull(message = "Teacher must be provided if assigning")
+    private String teacherId;
 
-    @NotNull(message = "Student must be provided if assigning")
-    private Student student;
+//    @NotNull(message = "Student must be provided if assigning")
+    private String studentId;
 
 
     public Course(String name, double price) {
@@ -29,55 +29,62 @@ public class Course {
         this.price = price;
     }
 
+    public Course() {
+    }
 
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(int counter) {
+        Course.counter = counter;
+    }
 
     public String getCourseId() {
         return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
     public String getName() {
         return name;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public double getMoney_earned() {
-        return money_earned;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPrice(double price) {
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public void setMoney_earned(double money_earned) {
+    public Double getMoney_earned() {
+        return money_earned;
+    }
+
+    public void setMoney_earned(Double money_earned) {
         this.money_earned = money_earned;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public String getTeacherId() {
+        return teacherId;
     }
 
-    public Student getStudent() {
-        return student;
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public String getStudentId() {
+        return studentId;
     }
 
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
 }

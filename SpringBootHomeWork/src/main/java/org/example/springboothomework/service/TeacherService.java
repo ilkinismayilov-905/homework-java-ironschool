@@ -1,5 +1,6 @@
 package org.example.springboothomework.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.springboothomework.exceptions.NotFoundException;
 import org.example.springboothomework.model.Teacher;
 import org.springframework.stereotype.Service;
@@ -29,12 +30,27 @@ public class TeacherService {
     }
 
     public Teacher updateTeacher(String teacherId, Teacher updatedTeacher) {
+
+        if (updatedTeacher == null) {
+            throw new RuntimeException("Teacher is null");
+        }
+
         if (!teachers.containsKey(teacherId)) {
             throw new NotFoundException("Teacher not found");
         }
+
         Teacher teacher = getTeacherById(teacherId);
-        teacher.setName(updatedTeacher.getName());
-        teacher.setSalary(updatedTeacher.getSalary());
+
+        if (updatedTeacher.getName() != null) {
+            teacher.setName(updatedTeacher.getName());
+        }
+
+        if (updatedTeacher.getSalary() != null) {
+            teacher.setSalary(updatedTeacher.getSalary());
+        }
+
+        teachers.put(teacherId, teacher);
+
         return teacher;
     }
 
@@ -46,9 +62,6 @@ public class TeacherService {
     }
 
     public double getTotalSalary() {
-        return teachers.values()
-                .stream()
-                .mapToDouble(Teacher::getSalary)
-                .sum();
+        return teachers.values().stream().mapToDouble(Teacher::getSalary).sum();
     }
 }

@@ -21,13 +21,16 @@ public class Student {
     @Email(message = "Email should be valid")
     private String email;
 
-    private Course course;
+    private String courseId;
 
     public Student(String name, String address, String email) {
         this.studentId = String.valueOf(counter++);
         this.name = name;
         this.address = address;
         this.email = email;
+    }
+
+    public Student() {
     }
 
     public String getStudentId() {
@@ -62,11 +65,11 @@ public class Student {
         this.email = email;
     }
 
-    public Course getCourse() {
-        return course;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 }

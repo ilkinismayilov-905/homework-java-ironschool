@@ -1,15 +1,24 @@
 package org.example.springboothomework.service;
 
+import lombok.RequiredArgsConstructor;
+import org.example.springboothomework.exceptions.NotFoundException;
 import org.example.springboothomework.model.Course;
 import org.example.springboothomework.model.Student;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
 
     private final Map<String, Student> students = new HashMap<>();
+    private final CourseService courseService;
+
+    public StudentService(@Lazy CourseService courseService) {
+        this.courseService = courseService;
+    }
 
     public Student createStudent(String name, String address, String email) {
         Student student = new Student(name, address, email);
@@ -21,21 +30,49 @@ public class StudentService {
         return new ArrayList<>(students.values());
     }
 
-    public Optional<Student> getStudentById(String studentId) {
-        return Optional.ofNullable(students.get(studentId));
-    }
-
-    public void updateStudent(Student student) {
-        students.put(student.getStudentId(), student);
-    }
-
-    public List<Student> getStudentsByCourse(Course course) {
-        List<Student> result = new ArrayList<>();
-        for (Student s : students.values()) {
-            if (s.getCourse() != null && s.getCourse().getCourseId().equals(course.getCourseId())) {
-                result.add(s);
-            }
+    public Student getStudentById(String studentId) {
+        Student student = students.get(studentId);
+        if (student == null) {
+            throw new NotFoundException("Student not found");
         }
-        return result;
+        return students.get(studentId);
+    }
+
+    public Student updateStudent(String id, Student student) {
+
+        if (student == null) {
+            throw new RuntimeException("Student is null");
+        }
+
+        Student studentModel = getStudentById(id);
+
+        if (student.getName() != null) {
+            studentModel.setName(student.getName());
+        }
+
+        if (student.getCourseId() != null) {
+            studentModel.setCourseId(student.getCourseId());
+        }
+        if (student.getEmail() != null) {
+            studentModel.setEmail(student.getEmail());
+        }
+
+        if (student.getAddress() != null) {
+            studentModel.setAddress(student.getAddress());
+        }
+
+        students.put(id, studentModel);
+
+        return studentModel;
+    }
+
+    public List<Student> getStudentsByCourseId(String courseId) {
+        courseService.getCourseById(courseId);
+
+        return students.values()
+                .stream()
+                .filter(s -> s.getCourseId() != null &&
+                        s.getCourseId().equals(courseId))
+                .collect(Collectors.toList());
     }
 }
