@@ -40,9 +40,7 @@ class CourseControllerTest {
 
     @Test
     void shouldReturnAllCourses() throws Exception {
-
         Course course = new Course("Java", 500.0);
-
         when(courseService.getAllCourses()).thenReturn(List.of(course));
 
         mockMvc.perform(get("/api/courses"))
@@ -51,9 +49,7 @@ class CourseControllerTest {
 
     @Test
     void shouldReturnCourseById() throws Exception {
-
         Course course = new Course("Java", 500.0);
-
         when(courseService.getCourseById("1")).thenReturn(course);
 
         mockMvc.perform(get("/api/courses/1"))
@@ -61,10 +57,16 @@ class CourseControllerTest {
     }
 
     @Test
+    void shouldReturn404WhenCourseNotFound() throws Exception {
+        when(courseService.getCourseById("999")).thenReturn(null);
+
+        mockMvc.perform(get("/api/courses/999"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void shouldUpdateCourse() throws Exception {
-
         Course course = new Course("Java", 500.0);
-
         when(courseService.updateCourse(eq("1"), any(Course.class))).thenReturn(course);
 
         mockMvc.perform(put("/api/courses/1")
@@ -75,7 +77,6 @@ class CourseControllerTest {
 
     @Test
     void shouldDeleteCourse() throws Exception {
-
         doNothing().when(courseService).deleteCourse("1");
 
         mockMvc.perform(delete("/api/courses/1"))
@@ -84,7 +85,6 @@ class CourseControllerTest {
 
     @Test
     void shouldAssignTeacher() throws Exception {
-
         doNothing().when(courseService).assignTeacher("1", "Ali");
 
         mockMvc.perform(put("/api/courses/1/teacher")
@@ -95,7 +95,6 @@ class CourseControllerTest {
 
     @Test
     void shouldAssignStudent() throws Exception {
-
         doNothing().when(courseService).assignStudent("1", "Veli");
 
         mockMvc.perform(put("/api/courses/1/student")
@@ -106,10 +105,17 @@ class CourseControllerTest {
 
     @Test
     void shouldEnrollStudent() throws Exception {
-
         doNothing().when(courseService).enrollStudent("2", "1");
 
         mockMvc.perform(post("/api/courses/1/enroll/2"))
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    void shouldReturn400WhenEnrollingNonExistentStudent() throws Exception {
+        doThrow(new RuntimeException("Student not found")).when(courseService).enrollStudent("99", "1");
+
+        mockMvc.perform(post("/api/courses/1/enroll/99"))
+                .andExpect(status().isBadRequest());
     }
 }

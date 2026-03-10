@@ -16,4 +16,14 @@ public class SchoolService {
 
         return moneyEarned - moneySpent;
     }
+
+    public double showMoneyEarned() {
+        double moneyEarned = courseService.getTotalMoneyEarned();
+        return moneyEarned;
+    }
+
+    public double showMoneySpent() {
+        double moneySpent = teacherService.getTotalSalary();
+        return moneySpent;
+    }
 }

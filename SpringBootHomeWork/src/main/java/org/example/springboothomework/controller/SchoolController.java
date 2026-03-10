@@ -20,4 +20,14 @@ public class SchoolController {
     public ResponseEntity<Double> showProfit() {
         return ResponseEntity.ok(schoolService.showProfit());
     }
+
+    @GetMapping("/moneyEarn")
+    public ResponseEntity<Double> showMoneyEarn() {
+        return ResponseEntity.ok(schoolService.showMoneyEarned());
+    }
+
+    @GetMapping("/moneySpent")
+    public ResponseEntity<Double> showMoneySpent() {
+        return ResponseEntity.ok(schoolService.showMoneySpent());
+    }
 }

@@ -40,9 +40,7 @@ class TeacherControllerTest {
 
     @Test
     void shouldCreateTeacher() throws Exception {
-
         Teacher teacher = new Teacher("Ali", 3000.0);
-
         when(teacherService.createTeacher(any(Teacher.class))).thenReturn(teacher);
 
         mockMvc.perform(post("/api/teachers")
@@ -52,10 +50,19 @@ class TeacherControllerTest {
     }
 
     @Test
+    void shouldReturn400WhenTeacherSalaryIsInvalid() throws Exception {
+        Teacher teacher = new Teacher("Ali", -100.0);
+        when(teacherService.createTeacher(any(Teacher.class))).thenThrow(new IllegalArgumentException("Invalid salary"));
+
+        mockMvc.perform(post("/api/teachers")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(teacher)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void shouldReturnAllTeachers() throws Exception {
-
         Teacher teacher = new Teacher("Ali", 3000.0);
-
         when(teacherService.getAllTeachers()).thenReturn(List.of(teacher));
 
         mockMvc.perform(get("/api/teachers"))
@@ -64,9 +71,7 @@ class TeacherControllerTest {
 
     @Test
     void shouldReturnTeacherById() throws Exception {
-
         Teacher teacher = new Teacher("Ali", 3000.0);
-
         when(teacherService.getTeacherById("1")).thenReturn(teacher);
 
         mockMvc.perform(get("/api/teachers/1"))
@@ -74,10 +79,16 @@ class TeacherControllerTest {
     }
 
     @Test
+    void shouldReturn404WhenTeacherNotFound() throws Exception {
+        when(teacherService.getTeacherById("unknown")).thenReturn(null);
+
+        mockMvc.perform(get("/api/teachers/unknown"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void shouldUpdateTeacher() throws Exception {
-
         Teacher teacher = new Teacher("Ali", 3000.0);
-
         when(teacherService.updateTeacher(eq("1"), any(Teacher.class))).thenReturn(teacher);
 
         mockMvc.perform(put("/api/teachers/1")
@@ -88,7 +99,6 @@ class TeacherControllerTest {
 
     @Test
     void shouldDeleteTeacher() throws Exception {
-
         doNothing().when(teacherService).deleteTeacher("1");
 
         mockMvc.perform(delete("/api/teachers/1"))

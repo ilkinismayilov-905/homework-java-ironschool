@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import tools.jackson.databind.ObjectMapper;
 
+
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -40,9 +41,7 @@ class StudentControllerTest {
 
     @Test
     void shouldReturnAllStudents() throws Exception {
-
         Student student = new Student("Yusif", "Baku", "yusif@mail.com");
-
         when(studentService.getAllStudents()).thenReturn(List.of(student));
 
         mockMvc.perform(get("/students"))
@@ -51,9 +50,7 @@ class StudentControllerTest {
 
     @Test
     void shouldReturnStudentById() throws Exception {
-
         Student student = new Student("Yusif", "Baku", "yusif@mail.com");
-
         when(studentService.getStudentById("1")).thenReturn(student);
 
         mockMvc.perform(get("/students/1"))
@@ -61,12 +58,17 @@ class StudentControllerTest {
     }
 
     @Test
+    void shouldReturn404WhenStudentNotFound() throws Exception {
+        when(studentService.getStudentById("invalid-id")).thenReturn(null);
+
+        mockMvc.perform(get("/students/invalid-id"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void shouldCreateStudent() throws Exception {
-
         Student student = new Student("Yusif", "Baku", "yusif@mail.com");
-
-        when(studentService.createStudent("Yusif", "Baku", "yusif@mail.com"))
-                .thenReturn(student);
+        when(studentService.createStudent("Yusif", "Baku", "yusif@mail.com")).thenReturn(student);
 
         mockMvc.perform(post("/students")
                         .param("name", "Yusif")
@@ -77,11 +79,8 @@ class StudentControllerTest {
 
     @Test
     void shouldUpdateStudent() throws Exception {
-
         Student student = new Student("Yusif", "Baku", "yusif@mail.com");
-
-        when(studentService.updateStudent(eq("1"), any(Student.class)))
-                .thenReturn(student);
+        when(studentService.updateStudent(eq("1"), any(Student.class))).thenReturn(student);
 
         mockMvc.perform(put("/students/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -90,14 +89,11 @@ class StudentControllerTest {
     }
 
     @Test
-    void shouldReturnStudentsByCourseId() throws Exception {
+    void shouldReturnEmptyListWhenNoStudentsForCourse() throws Exception {
+        when(studentService.getStudentsByCourseId("empty-course")).thenReturn(List.of());
 
-        Student student = new Student("Yusif", "Baku", "yusif@mail.com");
-
-        when(studentService.getStudentsByCourseId("10"))
-                .thenReturn(List.of(student));
-
-        mockMvc.perform(get("/students/course/10"))
-                .andExpect(status().isOk());
+        mockMvc.perform(get("/students/course/empty-course"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(0));
     }
 }

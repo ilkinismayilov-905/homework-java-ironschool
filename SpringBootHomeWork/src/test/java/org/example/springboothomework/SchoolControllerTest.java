@@ -33,11 +33,64 @@ class SchoolControllerTest {
 
     @Test
     void shouldReturnProfit() throws Exception {
-
         when(schoolService.showProfit()).thenReturn(2000.0);
 
         mockMvc.perform(get("/api/school/profit"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("2000.0"));
+    }
+
+    @Test
+    void shouldReturnZeroProfitWhenNoData() throws Exception {
+        when(schoolService.showProfit()).thenReturn(0.0);
+
+        mockMvc.perform(get("/api/school/profit"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("0.0"));
+    }
+
+    @Test
+    void shouldReturnNegativeProfitWhenLoss() throws Exception {
+        when(schoolService.showProfit()).thenReturn(-500.0);
+
+        mockMvc.perform(get("/api/school/profit"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("-500.0"));
+    }
+
+    @Test
+    void shouldReturnMoneyEarned() throws Exception {
+        when(schoolService.showMoneyEarned()).thenReturn(5000.0);
+
+        mockMvc.perform(get("/api/school/moneyEarn"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("5000.0"));
+    }
+
+    @Test
+    void shouldReturnZeroMoneyEarnedWhenNoEnrollments() throws Exception {
+        when(schoolService.showMoneyEarned()).thenReturn(0.0);
+
+        mockMvc.perform(get("/api/school/moneyEarn"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("0.0"));
+    }
+
+    @Test
+    void shouldReturnMoneySpent() throws Exception {
+        when(schoolService.showMoneySpent()).thenReturn(3000.0);
+
+        mockMvc.perform(get("/api/school/moneySpent"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("3000.0"));
+    }
+
+    @Test
+    void shouldReturnZeroMoneySpentWhenNoTeachers() throws Exception {
+        when(schoolService.showMoneySpent()).thenReturn(0.0);
+
+        mockMvc.perform(get("/api/school/moneySpent"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("0.0"));
     }
 }
