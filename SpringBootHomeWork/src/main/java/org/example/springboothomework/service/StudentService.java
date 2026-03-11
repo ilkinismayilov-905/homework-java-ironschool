@@ -20,8 +20,7 @@ public class StudentService {
         this.courseService = courseService;
     }
 
-    public Student createStudent(String name, String address, String email) {
-        Student student = new Student(name, address, email);
+    public Student createStudent(Student student) {
         students.put(student.getStudentId(), student);
         return student;
     }

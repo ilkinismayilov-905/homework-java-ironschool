@@ -20,6 +20,13 @@ public class CourseController {
         this.courseService = courseService;
     }
 
+    @PostMapping
+    public ResponseEntity<Course> createCourse(@Valid @RequestBody Course course) {
+        Course addedCourse = courseService.addCourse(course);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(course);
+    }
+
     @GetMapping
     public ResponseEntity<List<Course>> getAllCourses() {
         return ResponseEntity.ok(courseService.getAllCourses());

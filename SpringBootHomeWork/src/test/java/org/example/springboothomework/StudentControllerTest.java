@@ -68,13 +68,22 @@ class StudentControllerTest {
     @Test
     void shouldCreateStudent() throws Exception {
         Student student = new Student("Yusif", "Baku", "yusif@mail.com");
-        when(studentService.createStudent("Yusif", "Baku", "yusif@mail.com")).thenReturn(student);
 
-        mockMvc.perform(post("/students")
-                        .param("name", "Yusif")
-                        .param("address", "Baku")
-                        .param("email", "yusif@mail.com"))
-                .andExpect(status().isOk());
+        when(studentService.createStudent(any(Student.class))).thenReturn(student);
+
+        mockMvc.perform(post("/api/students")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                        {
+                          "name": "Yusif",
+                          "address": "Baku",
+                          "email": "yusif@mail.com"
+                        }
+                        """))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.name").value("Yusif"))
+                .andExpect(jsonPath("$.address").value("Baku"))
+                .andExpect(jsonPath("$.email").value("yusif@mail.com"));
     }
 
     @Test

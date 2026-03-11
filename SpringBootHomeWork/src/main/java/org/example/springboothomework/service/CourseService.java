@@ -22,6 +22,11 @@ public class CourseService {
         this.teacherService = teacherService;
     }
 
+    public Course addCourse(Course course) {
+        courseRepo.put(course.getCourseId(), course);
+        return course;
+    }
+
     public List<Course> getAllCourses() {
         return new ArrayList<>(courseRepo.values());
     }

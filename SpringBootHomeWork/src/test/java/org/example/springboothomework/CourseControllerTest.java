@@ -39,6 +39,25 @@ class CourseControllerTest {
     }
 
     @Test
+    void shouldCreateCourse() throws Exception {
+        Course course = new Course("Java", 100.0);
+
+        when(courseService.addCourse(any(Course.class))).thenReturn(course);
+
+        mockMvc.perform(post("/api/courses")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                        {
+                          "name": "Java",
+                          "price": 100
+                        }
+                        """))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.name").value("Java"))
+                .andExpect(jsonPath("$.price").value(100));
+    }
+
+    @Test
     void shouldReturnAllCourses() throws Exception {
         Course course = new Course("Java", 500.0);
         when(courseService.getAllCourses()).thenReturn(List.of(course));
